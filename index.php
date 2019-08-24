@@ -5,9 +5,10 @@
 	$deCode = json_decode($datas,true);
 	file_put_contents('log.txt', file_get_contents('php://input') . PHP_EOL, FILE_APPEND);
 	$replyToken = $deCode['events'][0]['replyToken'];
+  $USERID = $deCode['events'][0]['source']['userId'];
 	$messages = [];
 	$messages['replyToken'] = $replyToken;
-	$messages['messages'][0] = getFormatTextMessage("เอ้ย ถามอะไรก็ตอบได ว่าไง");
+	$messages['messages'][0] = getFormatTextMessage("เอ้ย ถามอะไรก็ตอบได ว่าไง"+$USERID);
 	$encodeJson = json_encode($messages);
 	$LINEDatas['url'] = "https://api.line.me/v2/bot/message/reply";
   	$LINEDatas['token'] = "T1N5OCuPWkub1DJ/BDd9bqdciejruZeC47EKS7R1Q2za6QBj1a9P+Y+z+fZqNjk3cBOyWfaC0DSySI1T23nwoBcteCI8CIqiECWwkYg1fNR3qkAElfXfJPIaKVRXmLLses8+9ywyQAv33Pz19QsDuAdB04t89/1O/w1cDnyilFU=";
